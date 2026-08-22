@@ -1,0 +1,15 @@
+[Unit]
+Description=ITSC-4155 capstone app
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/var/www/app
+EnvironmentFile=/var/www/app/.env
+ExecStart=/usr/bin/node-22 /var/www/app/src/server/server.js
+
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

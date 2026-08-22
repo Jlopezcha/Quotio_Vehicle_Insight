@@ -1,0 +1,15 @@
+[Unit]
+Description=RAG FastAPI service
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/var/www/app/src/rag_ai_service
+EnvironmentFile=/var/www/app/.env
+ExecStart=/var/www/app/.venv/bin/uvicorn main_rag:app --host 127.0.0.1 --port 9000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
