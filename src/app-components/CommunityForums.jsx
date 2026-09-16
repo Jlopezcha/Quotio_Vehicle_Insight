@@ -59,6 +59,7 @@ function CommunityForums() {
               <CardHeader className="space-y-1">
                 <CardTitle className="text-lg text-card-foreground">{post.title}</CardTitle>
                 <div className="flex gap-3 text-xs text-muted-foreground">
+                  <span>{post.userName}</span>
                   <span>•</span>
                   <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>

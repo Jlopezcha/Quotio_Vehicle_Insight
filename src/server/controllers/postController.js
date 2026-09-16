@@ -1,3 +1,4 @@
+import User from '../../models/User.js';
 import {
   getAllPosts,
   getPostById,
@@ -22,8 +23,13 @@ export async function createPostHandler(req, res) {
   //console.log(req.body);
   const { title, content } = req.body;
   //console.log(req.body);
+  const id = req.user.userId;
+  
+  const userData = await User.findById(id);
+  const username = userData.username;
+  //console.log("in create controller handler. username = " + username);
 
-  const newPost = await createPost({ title, content, author: req.user.userId });
+  const newPost = await createPost({ title, content, author: id, userName: username });
   res.status(201).json(newPost);
 }
 

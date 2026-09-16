@@ -1,3 +1,4 @@
+import User from '../../models/User.js';
 import{
     getAllComments,
     getCommentById,
@@ -26,7 +27,12 @@ export async function getCommentsByPostIdHandler(req, res) {
 
 export async function createCommentHandler(req, res){
     const {content} = req.body;
-    const newComment = await createCommeent({content, author: req.user.userId, post: req.params.id});
+    const id = req.user.userId;
+
+    const userData = await User.findById(id);
+    const username = userData.username;
+
+    const newComment = await createCommeent({content, author: req.user.userId, userName: username, post: req.params.id});
     res.status(201).json(newComment);
 }
 

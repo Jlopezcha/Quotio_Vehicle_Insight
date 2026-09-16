@@ -6,14 +6,14 @@ import User from '../../models/User.js';
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password required' });
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: 'Username, Email and password required' });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
   try {
-    const user = await User.create({ email, passwordHash });
+    const user = await User.create({username, email, passwordHash });
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET,
@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
     res.status(201).json({ token, email: user.email });
   } catch (err) {
     if (err.code === 11000) {
-      return res.status(409).json({ error: 'Email already in use' });
+      return res.status(409).json({ error: 'Username and or Email already in use' });
     }
     throw err;
   }

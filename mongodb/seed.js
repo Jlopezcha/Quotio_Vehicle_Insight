@@ -14,11 +14,11 @@ const carMakes = [
 ];
 
 const syntheticUsers = [
-  { email: 'alice@example.com', password: 'password123' },
-  { email: 'bob@example.com', password: 'securepass1' },
-  { email: 'charlie@example.com', password: 'mypassword9' },
-  { email: 'diana@example.com', password: 'diana12345' },
-  { email: 'eve@example.com', password: 'evepassword' },
+  { username: 'alice01', email: 'alice@example.com', password: 'password123' },
+  { username: 'b903-20', email: 'bob@example.com', password: 'securepass1' },
+  { username: 'charlieL', email: 'charlie@example.com', password: 'mypassword9' },
+  { username: 'Diana26', email: 'diana@example.com', password: 'diana12345' },
+  { username: 'eVe992', email: 'eve@example.com', password: 'evepassword' },
 ];
 
 await connectdb();
@@ -29,7 +29,8 @@ console.log(`Seeded ${carMakes.length} car makes`);
 
 await User.deleteMany({});
 const users = await Promise.all(
-  syntheticUsers.map(async ({ email, password }) => ({
+  syntheticUsers.map(async ({ username, email, password }) => ({
+    username,
     email,
     passwordHash: await bcrypt.hash(password, 10),
   }))

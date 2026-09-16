@@ -9,6 +9,7 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [isSignup, setIsSignup] = useState(false);
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,6 +19,13 @@ function Login() {
     event.preventDefault();
     setError("");
 
+    if(isSignup){
+      if (username === "") {
+        setError("Please enter your username");
+        return;
+      }
+    }
+    
     if (email === "") {
       setError("Please enter your email");
       return;
@@ -33,12 +41,22 @@ function Login() {
 
     setLoading(true);
     try {
-      const endpoint = isSignup ? "/api/auth/signup" : "/api/auth/login";
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      //const endpoint = isSignup ? "/api/auth/signup" : "/api/auth/login";
+      let res = "";
+
+      if(isSignup){
+        res = await fetch("/api/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password }),
+        });
+      } else {
+        res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({email, password }),
+        });
+      }
 
       const data = await res.json();
 
@@ -47,7 +65,7 @@ function Login() {
         return;
       }
 
-     login({ token: data.token, email: data.email });
+      login({ token: data.token, email: data.email });
       navigate("/");
     } catch {
       setError("Could not connect to server");
@@ -70,40 +88,72 @@ function Login() {
           </h2>
 
           {error && (
-            <p className="mb-4 text-sm text-destructive" role="alert">{error}</p>
+            <p className="mb-4 text-sm text-destructive" role="alert">
+              {error}
+            </p>
           )}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
+            {isSignup && ( 
             <div className="space-y-2">
-              <label htmlFor="auth-email" className="text-sm font-medium text-foreground">
+              <label
+                htmlFor="auth-username"
+                className="text-sm font-medium text-foreground"
+              >
+                Username
+              </label>
+              <Input
+                id="auth-username"
+                type="string"
+                placeholder="Username"
+                className="h-12"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div> 
+            )}
+
+            <div className="space-y-2">
+              <label
+                htmlFor="auth-email"
+                className="text-sm font-medium text-foreground"
+              >
                 Email
               </label>
-            <Input
-              id="auth-email"
-              type="email"
-              placeholder="Email"
-              className="h-12"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+              <Input
+                id="auth-email"
+                type="email"
+                placeholder="Email"
+                className="h-12"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="auth-password" className="text-sm font-medium text-foreground">
+              <label
+                htmlFor="auth-password"
+                className="text-sm font-medium text-foreground"
+              >
                 Password
               </label>
-            <Input
-              id="auth-password"
-              type="password"
-              placeholder="Password"
-              className="h-12"
-              autoComplete={isSignup ? "new-password" : "current-password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              <Input
+                id="auth-password"
+                type="password"
+                placeholder="Password"
+                className="h-12"
+                autoComplete={isSignup ? "new-password" : "current-password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <Button type="submit" size="lg" className="w-full" disabled={loading}>
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full"
+              disabled={loading}
+            >
               {loading ? "Please wait..." : isSignup ? "Sign Up" : "Log In"}
             </Button>
           </form>

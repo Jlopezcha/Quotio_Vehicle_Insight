@@ -133,6 +133,7 @@ function CommentDetails() {
 
           <CardFooter>
             <div className="flex gap-3 text-xs text-muted-foreground">
+                    <span>{comment.userName}</span>
                     <span>•</span>
                     <span>{new Date(comment.createdAt).toLocaleDateString()}</span>
                   </div>

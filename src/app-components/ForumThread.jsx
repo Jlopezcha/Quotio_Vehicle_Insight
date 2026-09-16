@@ -67,6 +67,7 @@ function ForumThread() {
                 {post.title}
               </CardTitle>
               <div className="flex gap-3 text-xs text-muted-foreground">
+                <span>{post.userName}</span>
                 <span>•</span>
                 <span>{new Date(post.createdAt).toLocaleDateString()}</span>
               </div>
@@ -99,6 +100,7 @@ function ForumThread() {
 
                 <CardFooter>
                   <div className="flex gap-3 text-xs text-muted-foreground">
+                    <span>{comment.userName}</span>
                     <span>•</span>
                     <span>{new Date(comment.createdAt).toLocaleDateString()}</span>
                   </div>

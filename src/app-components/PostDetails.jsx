@@ -141,6 +141,7 @@ function PostDetails() {
           <CardHeader className="space-y-1">
             <CardTitle className="text-lg text-card-foreground">{post.title}</CardTitle>
             <div className="text-xs text-muted-foreground flex gap-3">
+              <span>{post.userName}</span>
               <span>•</span>
               <span>{new Date(post.createdAt).toLocaleDateString()}</span>
             </div>
