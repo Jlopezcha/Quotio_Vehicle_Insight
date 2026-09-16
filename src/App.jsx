@@ -10,8 +10,11 @@ import Recall from "./app-components/Recall"; // Keep import clear
 import Reliability from "./app-components/Reliability";
 import Login from "./app-components/Login";
 import CommunityForums from "./app-components/CommunityForums";
+import ForumThread from "./app-components/ForumThread";
 import PostDetails from "./app-components/PostDetails";
+import CommentDetails from "./app-components/CommentDetails";
 import CreatePost from "./app-components/CreatePost";
+import CreateComment from "./app-components/CreateComment";
 import CarDetails from "./app-components/CarDetails";
 import PrivacyPolicy from "./app-components/PrivacyPolicy";
 import TermsOfService from "./app-components/TermsOfService";
@@ -35,8 +38,11 @@ function App() {
           <Route path="/recalls" element={<Recall />} /> {/* Standalone safety deck route */}
           <Route path="/reliability" element={<Reliability />} />
           <Route path="/forums" element={<CommunityForums />} />
+          <Route path="/thread/:id" element={<ForumThread />} />
           <Route path="/post/:id" element={<PostDetails />} />
+          <Route path="/comment/:id" element={<CommentDetails />} />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/createcomment/:id" element={<CreateComment />} />
           <Route path="/login" element={<Login />} />
           <Route path="/car-details" element={<CarDetails />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />

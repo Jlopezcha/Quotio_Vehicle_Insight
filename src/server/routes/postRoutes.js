@@ -17,6 +17,8 @@ import {
 import { authenticateToken } from '../middleware/auth.js';
 import { authorizeOwnership } from '../middleware/authorizeOwnership.js';
 
+import { getPostById } from '../services/postService.js';
+
 const router = Router();
 
 router.get('/', getAllPostsHandler);
@@ -26,7 +28,7 @@ router.put(
   '/:id',
   authenticateToken,
   validateId,
-  authorizeOwnership,
+  authorizeOwnership(getPostById),
   validateUpdatePost,
   updatePostHandler,
 );
@@ -34,7 +36,7 @@ router.delete(
   '/:id',
   authenticateToken,
   validateId,
-  authorizeOwnership,
+  authorizeOwnership(getPostById),
   deletePostHandler,
 );
 

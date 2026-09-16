@@ -53,7 +53,7 @@ function CommunityForums() {
           posts.map((post) => (
             <Card
               key={post._id}
-              onClick={() => navigate(`/post/${post._id}`)}
+              onClick={() => navigate(`/thread/${post._id}`)}
               className="cursor-pointer border-border/70 bg-card/75 transition hover:border-primary/50 hover:shadow-md"
             >
               <CardHeader className="space-y-1">
@@ -66,7 +66,7 @@ function CommunityForums() {
 
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Click to view discussion...
+                  {post.content}
                 </p>
               </CardContent>
             </Card>

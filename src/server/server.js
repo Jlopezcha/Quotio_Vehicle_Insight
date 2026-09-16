@@ -5,7 +5,8 @@ import authRoutes from './routes/auth.js';
 import carRoutes from './routes/cars.js';
 import carDetailsRoutes from './routes/carDetails.js';
 import userRoutes from './routes/users.js';
-import postRoutes from './routes/postRoutes.js'
+import postRoutes from './routes/postRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 import cors from "cors";
 import recallRoutes from './routes/recalls.js';
 import estimateRoutes from './routes/estimate.js';
@@ -34,6 +35,7 @@ app.use('/api/cars', carRoutes);
 app.use('/api/car-details', carDetailsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
 app.use('/api/estimate', estimateRoutes);
 app.use('/api/recalls', recallRoutes);
 

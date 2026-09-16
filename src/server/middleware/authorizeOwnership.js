@@ -1,12 +1,18 @@
-import { getPostById } from '../services/postService.js';
+export function authorizeOwnership(getResourceById) {
+  return async function (req, res, next) {
+    try {
+      const id = req.params.id;
+      const resource = await getResourceById(id);
 
-export async function authorizeOwnership(req, res, next) {
-  const id = req.params.id;
-  const post = await getPostById(id);
-  if (String(post.author) !== req.user.userId) {
-    const error = new Error('Forbidden: insufficient permission.');
-    error.status = 403;
-    return next(error);
-  }
-  next();
+      if (String(resource.author) !== req.user.userId) {
+        const error = new Error("Forbidden: insufficient permission.");
+        error.status = 403;
+        return next(error);
+      }
+      req.resource = resource;
+      next();
+    } catch (error) {
+      next(error);
+    }
+  };
 }

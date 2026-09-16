@@ -1,7 +1,7 @@
 //import mongoose from 'mongoose';
 import { connectdb } from '../../../src/config/db.js';
 import Post from '../../models/Post.js';
-
+import Comment from '../../models/Comment.js'
 
 await connectdb();
 
@@ -36,6 +36,7 @@ export async function update(id, updatedData){
 }
 
 export async function remove(id){
+    await Comment.deleteMany({post: id});
     const deletedPost = await Post.findByIdAndDelete(id);
     return deletedPost;
 }
