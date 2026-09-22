@@ -5,7 +5,7 @@ An AI-powered vehicle insight platform. Quotio provides many services such as an
 AWS hosting public link
 > http://3.12.144.166/
 
-> Do NOT enter sensitive info such as a real email - Meant as a prototype. Due to free tier limitations, data is sparse which makes it outdated (as of July 2026) and not reliably accurate.
+> Do NOT enter sensitive info such as a real email - Meant as a prototype only. Due to free tier limitations, data is sparse and does not include any NHTSA recall/inv data after July 2026. Although it provides acceptable general responses, the amount of concessions made means it should not be considered as reliably accurate.
 
 ## Tech Stack
 
@@ -255,8 +255,8 @@ UNCC capstone group project
 
 | Name | Responsibility |
 |---|---|
-| Jerry (me) | Hybrid RAG desing/implementation, CRUD forum feature, setup project skeleton (server, routes, middleware, frontend pages) and overall architecture |
-| Jayant  | Deployment on AWS, design and handled mongodb/node backend server |
+| Jerry (me) | Hybrid RAG desing/implementation, CRUD forum feature, setup project skeleton (server, routes, middleware, frontend pages), current AWS deploy and overall architecture |
+| Jayant  | Deployment on AWS (for class not current), design and handled mongodb/node backend server |
 | Ben  | Designed entire UI; added additional components like about, policy and logo. Fixed bugs in the frontend |
 | Kasper  | Implemented monthly cost estimator formula, recall page, added car-details, use external along with testing validity of API data |
 | Thomas  | Implemented Login, session and persistance functionality, modified nav/app bar to work better with login or logout |
