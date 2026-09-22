@@ -7,7 +7,7 @@ Type=simple
 User=ec2-user
 WorkingDirectory=/var/www/app/src/rag_ai_service
 EnvironmentFile=/var/www/app/.env
-ExecStart=/var/www/app/.venv/bin/uvicorn main_rag:app --host 127.0.0.1 --port 9000
+ExecStart=/var/www/app/src/rag_ai_service/venv/bin/uvicorn main_rag:app --host 127.0.0.1 --port 9000
 Restart=always
 RestartSec=5
 
