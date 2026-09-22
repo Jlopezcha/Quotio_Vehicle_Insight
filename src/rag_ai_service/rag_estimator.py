@@ -254,7 +254,7 @@ async def ragestimate(req: CarRequest):
         print("=========INV Context=======")
         print(inv_context)
 
-        llm = ChatGroq(model="llama-3.3-70b-versatile")
+        llm = ChatGroq(model="openai/gpt-oss-120b")
 
         question = f"Generate the mileage-interval maintenance and cost estimate for the make={req.make} model={req.model} year={req.year}"
 

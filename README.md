@@ -2,7 +2,10 @@
 
 An AI-powered vehicle insight platform. Quotio provides many services such as an AI hybrid RAG based reliability summary for a given make, model, year. Additionally, it returns recall information from NHTSA and can give generic monthly cost estimator based on avg insurance, fuel, and mainteanance (with hybrid RAG breakdown at different mileage intervals) cost. 
 
+AWS hosting public link
+> http://3.12.144.166/
 
+> Do NOT enter sensitive info such as a real email - Meant as a prototype. Due to free tier limitations, data is sparse which makes it outdated (as of July 2026) and not reliably accurate.
 
 ## Tech Stack
 
